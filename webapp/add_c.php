@@ -1,4 +1,5 @@
 <?php
+    session_start();
 	include("connection.php");
 
 	if (isset($_POST['Add'])) {
@@ -7,7 +8,11 @@
         $name = $_POST['name'];
         $p_name = $_POST['p_name'];
 
-        if (!empty($number) && !empty($name) && !empty($p_name)) {
+        $sql1 = "SELECT * FROM courses WHERE number='$number'";
+		$qry1 = mysqli_query($conn, $sql1);
+		$count = mysqli_fetch_array($qry1);
+
+        if ((!empty($number) && !empty($name) && !empty($p_name)) && $count == 0) {
 
             $sql = "INSERT INTO `courses`(`number`, `name`, `p_name`) 
                     VALUES ('$number', '$name', '$p_name')";
@@ -20,7 +25,7 @@
         }
 
         else {
-            echo "All Fields must be filled";
+            echo "Course number already exists " .$number;
         }
 
 	}

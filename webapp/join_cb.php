@@ -1,14 +1,19 @@
 <?php
+	session_start();
 	include("connection.php");
 
 	if (isset($_POST['Add'])) {
 
-		$s_id = $_POST['s_id'];
+		$s_id = $_SESSION['id'];
         $cb_id = $_POST['cb_id'];
         $cb_name = $_POST['cb_name'];
 		$s_name = $_POST['s_name'];
 
-        if (!empty($s_id) && !empty($cb_id) && !empty($cb_name) && !empty($s_name)) {
+		$sql1 = "SELECT * FROM members WHERE s_id='$s_id' AND cb_id='$cb_id'";
+		$qry1 = mysqli_query($conn, $sql1);
+		$count = mysqli_fetch_array($qry1);
+
+        if ((!empty($cb_id) && !empty($cb_name) && !empty($s_name)) && $count == 0) {
 
             $sql = "INSERT INTO `members`(`s_id`, `cb_id`, `cb_name`, `s_name`) 
                     VALUES ('$s_id','$cb_id','$cb_name','$s_name')";
@@ -21,28 +26,9 @@
         }
 
         else {
-            echo "All fields must be filled";
+            echo "You are already a member of " .$cb_name;
         }
 
 	}
 
 ?>
-
-
-<!DOCTYPE html>
-<html>
-	<head>
-		<title></title>
-	</head>
-	<body>
-		<form action = "" method = "POST">
-
-			<input type = "text" name = "s_id" placeholder = 'Student ID'><br><br>
-			<input type = "text" name = "cb_id" placeholder = 'Club ID'><br><br>
-            <input type = "text" name = "cb_name" placeholder = 'Club Name'><br><br>
-			<input type = "text" name = "s_name" placeholder = 'Student Name'><br><br>
-			<input type = "submit" name = "Add" value = "Join Club!">
-
-		</form>
-	</body>
-</html>

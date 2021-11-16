@@ -1,3 +1,9 @@
+<?php 
+   session_start();
+   $name = $_SESSION['username'];
+   echo "Welcome " .$name. "<br>";
+?>
+
 <!DOCTYPE html>
 <html> 
 
@@ -7,19 +13,14 @@
 </head>
     
 <body>
-<div class="contain row">
-    <div class="comm-md-6">
-        <h2 class="text-center">Welcome Student</h2>
-    </div>
-</div>
 <form action = "view_c.php" method = "get">
     <input type = "submit" value = "View Schedule">
 </form>
+<form action = "view_cbY.php" method = "get">
+    <input type = "submit" value = "View You Clubs Your In">
+</form>
 <form action = "view_class.php" method = "get">
     <input type = "submit" value = "View Classes">
-</form>
-<form action = "register.php" method = "get">
-    <input type = "submit" value = "Register For Class">
 </form>
 <form action = "view_cb.php" method = "get">
     <input type = "submit" value = "View Clubs">

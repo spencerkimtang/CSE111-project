@@ -1,7 +1,6 @@
 <?php
-
+session_start();
 include("connection.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +47,8 @@ include("connection.php");
 			
 			<tr>
 				<?php
-					$sel = "SELECT * FROM `takes` WHERE s_id = '4001'";
+					$id = $_SESSION['id'];
+					$sel = "SELECT * FROM `takes` WHERE s_id = '$id'";
 					$qryDisplay = mysqli_query($conn, $sel);
 					while ($row = mysqli_fetch_array($qryDisplay)) {
                     
@@ -56,7 +56,7 @@ include("connection.php");
 					$className = $row['c_number'];
 					$grade = $row['grade'];
 
-					echo "<tr><td>" .$className. "</td><td>" .$grade. "</td><td><a href = 'drop_c.php?className=$className&sID=$s_id' >DROP</a></td></tr>";
+					echo "<tr><td>" .$className. "</td><td>" .$grade. "</td><td><a href = 'drop_c.php?c_number=$className' >DROP</a></td></tr>";
 				}
 
 				?>

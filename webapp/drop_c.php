@@ -1,17 +1,16 @@
 <?php
+    session_start();
 	include("connection.php");
 
-     $getName = $_GET['className'];
-    // $getID = $_GET['sID'];
+    $s_id = $_SESSION['id'];
+    $c_number = $_GET['c_number'];
 
-    echo $getName;
-    echo $getID;
-
-	$sql = "DELETE FROM takes WHERE c_number = `$getName` and s_id = '$getID'";
-    $qry = mysqli_query($conn, $sql);
+	$sql = "DELETE FROM `takes` WHERE s_id='$s_id' and c_number='$c_number'";
     
-    if ($qry) {
-        echo "Drop success";
-		header("location: student.php");
+    if ($qry = mysqli_query($conn, $sql)){
+        echo "Successfully dropped: " .$c_number;
+    }
+    else {
+        echo "Dropped NOT successful: " .$c_number;
 	}
 ?>

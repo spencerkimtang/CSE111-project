@@ -8,7 +8,11 @@
         $advisor = $_POST['advisor'];
         $president = $_POST['president'];
 
-        if (!empty($id) && !empty($name) && !empty($advisor) && !empty($president)) {
+        $sql2 = "SELECT * FROM clubs WHERE id='$id'";
+		$qry2 = mysqli_query($conn, $sql2);
+		$count = mysqli_fetch_array($qry2);
+
+        if ((!empty($id) && !empty($name) && !empty($advisor) && !empty($president) && $count==0)) {
 
             $sql = "INSERT INTO `clubs`(`id`, `name`, `advisor`, 'president') 
                     VALUES ('$id', '$name', '$advisor', '$president')";
@@ -16,12 +20,12 @@
             $qry = mysqli_query($conn, $sql);
         
             if ($qry) {
-                echo "New Course has been added: " .$name. "<br>";
+                echo "New Club has been added: " .$name. "<br>";
             }
         }
 
         else {
-            echo "All Fields must be filled";
+            echo "Club ID already exists" .$id;
         }
 
 	}

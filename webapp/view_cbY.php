@@ -1,7 +1,6 @@
 <?php
-
+session_start();
 include("connection.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -39,32 +38,24 @@ include("connection.php");
 	</head>
 	<body>
 		<h1>
-			Classes
+			Clubs You Are In
 		</h1>
-		<form action = "search_classes.php" method = "POST">
-			<input type = "text" placeholder = "Search Classes" name="search">
-			<input type = "submit" value="Search" name="submit">
-		</form>
-		<form action = "register.php" method = "get">
-			<input type = "submit" value = "Register For Class">
-		</form>
 		<table>
 			<tr>
-			<th>Class Number</th>
-			<th>Name</th>
-            <th>Professor</th>
+			<th>Club ID</th>
+			<th>Club Name</th>
 			
 			<tr>
 				<?php
-					$sel = "SELECT * FROM `courses`";
+					$id = $_SESSION['id'];
+					$sel = "SELECT * FROM `members` WHERE s_id = '$id'";
 					$qryDisplay = mysqli_query($conn, $sel);
 					while ($row = mysqli_fetch_array($qryDisplay)) {
                     
-						$c_number = $row['number'];
-						$name = $row['name'];
-						$pName = $row['p_name'];
+                    $cb_id = $row['cb_id'];
+					$clubName = $row['cb_name'];
 
-						echo "<tr><td>" .$c_number. "</td><td>" .$name. "</td><td>"  .$pName. "</td><td></td></tr>";
+					echo "<tr><td>" .$cb_id. "</td><td>" .$clubName. "</td><td><a href = 'drop_cb.php?cb_id=$cb_id&clubName=$clubName' >DROP</a></td></tr>";
 				}
 
 				?>

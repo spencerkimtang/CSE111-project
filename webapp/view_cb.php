@@ -62,7 +62,6 @@ include("connection.php");
 					$cb_name = $row['name'];
                     $advisor = $row['advisor'];
                     $president = $row['president'];
-
 					echo "<tr><td>" .$cb_id. "</td><td>" .$cb_name. "</td><td>" .$advisor. "</td><td>" .$president. "</td><td></td></tr>";
 				}
 

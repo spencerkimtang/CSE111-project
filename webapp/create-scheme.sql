@@ -24,13 +24,15 @@ CREATE TABLE clubs (
 );
 
 CREATE TABLE department (
+    id decimal(10,0) not null,
     name varchar(50) not null
 );
 
 CREATE TABLE courses (
     number varchar(50) not null,
     name varchar(50) not null,
-    p_name varchar(50) not null
+    p_name varchar(50) not null,
+    d_code decimal(10,0) not null
 );
 
 CREATE TABLE takes (

@@ -39,14 +39,14 @@ include("connection.php");
 	</head>
 	<body>
 		<h1>
-			Classes
+			Classes at UCM
 		</h1>
 		<form action = "search_classes.php" method = "POST">
 			<input type = "text" placeholder = "Search Classes" name="search">
 			<input type = "submit" value="Search" name="submit">
 		</form>
-		<form action = "register.php" method = "get">
-			<input type = "submit" value = "Register For Class">
+		<form action = "add_c.php" method = "get">
+			<input type = "submit" value = "Add Course">
 		</form>
 		<table>
 			<tr>

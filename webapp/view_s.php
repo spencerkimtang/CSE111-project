@@ -42,7 +42,11 @@ include("connection.php");
 			Students at UCM
 		</h1>
 		<form action = "search_s.php" method = "POST">
-			<input type = "text" placeholder = "Search Professor Name or ID" name="search">
+			<input type = "text" placeholder = "Student Name or ID" name="search">
+			<input type = "submit" value="Search" name="submit">
+		</form>
+		<form action = "search_takes.php" method = "POST">
+			<input type = "text" placeholder = "Student Takes" name="search">
 			<input type = "submit" value="Search" name="submit">
 		</form>
 		<table>

@@ -42,8 +42,15 @@ include("connection.php");
 			Professors at UCM
 		</h1>
 		<form action = "search_p.php" method = "POST">
-			<input type = "text" placeholder = "Search Professor Name or ID" name="search">
+			<input type = "text" placeholder = "Professor Name or ID" name="search">
 			<input type = "submit" value="Search" name="submit">
+		</form>
+		<form action = "search_teach.php" method = "POST">
+			<input type = "text" placeholder = "Professor Teachs" name="search">
+			<input type = "submit" value="Search" name="submit">
+		</form>
+		<form action = "add_p.php" method = "get">
+			<input type = "submit" value = "Add New Professor">
 		</form>
 		<table>
 			<tr>
