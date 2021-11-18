@@ -39,27 +39,27 @@ include("connection.php");
 	</head>
 	<body>
 		<h1>
-			Your Advisor at UCM
+			Search Student You Advise
 		</h1>
-		<form action = "search_a.php" method = "POST">
-			<input type = "text" placeholder = "Search Advisor Name or ID" name="search">
-			<input type = "submit" value="Search" name="submit">
-		</form>
 		<table>
 			<tr>
-			<th>Advisor ID</th>
-			<th>Advisor Name</th>
-            <th>Advisor Email</th>
+			<th>Student's ID</th>
+			<th>Student's Name</th>
+            <th>Student's Email</th>
 			
 			<tr>
 				<?php
-					$id = $_SESSION['id'];
-					$sel = "SELECT a.id, a.name, a.email
-							FROM advisor a, students s, studies st, department d
-							WHERE s.id = '$id'
-								AND st.s_id = s.id
-								AND st.major = d.name
-								AND a.d_code = d.id;";
+                	
+                    $search= $_POST['search'];
+                    $id = $_SESSION['id'];
+                    $sel = "SELECT s.id, s.name, s.email 
+                            FROM students s, advisor a, studies st, department d
+                            WHERE a.d_code = d.id
+                                AND s.id = st.s_id
+                                AND a.id = '$id'
+                                AND st.major = d.name
+                                AND (s.id LIKE '%$search%'
+                                OR s.name LIKE '%$search%')";
 					$qryDisplay = mysqli_query($conn, $sel);
 					while ($row = mysqli_fetch_array($qryDisplay)) {
                     
@@ -69,7 +69,7 @@ include("connection.php");
 
 					echo "<tr><td>" .$id. "</td><td>" .$name. "</td><td>"  .$email. "</td><td></td></tr>";
 				}
-
+                   
 				?>
 			</tr>
 		</table>

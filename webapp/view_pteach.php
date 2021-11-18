@@ -39,35 +39,38 @@ include("connection.php");
 	</head>
 	<body>
 		<h1>
-			Your Advisor at UCM
+			Students You Teach
 		</h1>
-		<form action = "search_a.php" method = "POST">
-			<input type = "text" placeholder = "Search Advisor Name or ID" name="search">
+		<form action = "search_ps.php" method = "POST">
+			<input type = "text" placeholder = "Search Student" name="search">
 			<input type = "submit" value="Search" name="submit">
 		</form>
 		<table>
 			<tr>
-			<th>Advisor ID</th>
-			<th>Advisor Name</th>
-            <th>Advisor Email</th>
+			<th>Student ID</th>
+			<th>Student Name</th>
+            <th>Class Number</th>
+            <th>Grade</th>
 			
 			<tr>
 				<?php
 					$id = $_SESSION['id'];
-					$sel = "SELECT a.id, a.name, a.email
-							FROM advisor a, students s, studies st, department d
-							WHERE s.id = '$id'
-								AND st.s_id = s.id
-								AND st.major = d.name
-								AND a.d_code = d.id;";
-					$qryDisplay = mysqli_query($conn, $sel);
+					$sel = "SELECT s.id, s.name, c.number, t.grade
+                            FROM courses c, professors p, takes t, students s
+                            WHERE p.id='$id' 
+                                AND p.name = c.p_name
+                                AND c.number = t.c_number
+                                AND t.s_id = s.id";
+                    
+                    $qryDisplay = mysqli_query($conn, $sel);
 					while ($row = mysqli_fetch_array($qryDisplay)) {
                     
-					$id = $row['id'];
+                    $id = $row['id'];
+					$number = $row['number'];
                     $name = $row['name'];
-                    $email = $row['email'];
+                    $grade = $row['grade'];
 
-					echo "<tr><td>" .$id. "</td><td>" .$name. "</td><td>"  .$email. "</td><td></td></tr>";
+					echo "<tr><td>" .$id. "</td><td>" .$name. "</td><td>" .$number. "</td><td>" .$grade."</td><td></td></tr>";
 				}
 
 				?>

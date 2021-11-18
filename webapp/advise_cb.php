@@ -1,16 +1,33 @@
 <?php
+    session_start();
 	include("connection.php");
 
 	if (isset($_POST['Add'])) {
 
+        $p_id = $_SESSION['id'];
 		$id = $_POST['id'];
         $name = $_POST['name'];
         $advisor = $_POST['advisor'];
 
-        if (!empty($id) && !empty($name)) {
+        //check if professor is already advising club
+        $sql1 = "SELECT * 
+                FROM clubs c, professors p
+                WHERE p.id = '$p_id'
+                    AND p.name = c.advisor
+                    AND c.name = '$name'";
+		$qry1 = mysqli_query($conn, $sql1);
+        $count = mysqli_fetch_array($qry1);
+        
+        // // to check if class is offered
+		// $sql2 = "SELECT * FROM clubs WHERE name='$name' AND advisor IS NOT NULL";
+		// $qry2 = mysqli_query($conn, $sql2);
+		// $offer = mysqli_fetch_array($qry2);
 
-            $sql = "INSERT INTO `clubs`(`id`, `name`, `advisor`, 'president') 
-                    VALUES ('$id', '$name', '$advisor', 'NULL')";
+        if (!empty($id) && !empty($name) && $count == 0) {
+
+            $sql = "UPDATE `clubs`
+                    SET advisor='$advisor'
+                    WHERE id='$id'";
 
             $qry = mysqli_query($conn, $sql);
         
@@ -20,7 +37,7 @@
         }
 
         else {
-            echo "All Fields must be filled";
+            echo "You are already advising " .$name;
         }
 
 	}

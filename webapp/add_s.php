@@ -1,5 +1,4 @@
 <?php
-    session_start();
 	include("connection.php");
 
 	if (isset($_POST['Add'])) {
@@ -25,7 +24,7 @@
 
             $qry1 = mysqli_query($conn, $sql1);
         
-            if ($qry && $qry1) {
+            if ($qry) {
                 echo "New Student has been added: " .$name. "<br>";
                 echo "New Student log in has been added for: " .$name. "<br>";
             }

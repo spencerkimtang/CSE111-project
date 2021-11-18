@@ -49,6 +49,9 @@ include("connection.php");
 			<input type = "text" placeholder = "Student Takes" name="search">
 			<input type = "submit" value="Search" name="submit">
 		</form>
+		<form action = "add_s.php" method = "get">
+			<input type = "submit" value = "Add New Student">
+		</form>
 		<table>
 			<tr>
 			<th>Student's ID</th>

@@ -28,11 +28,8 @@
 <form action = "views_cbM.php" method = "get">
     <input type = "submit" value = "View Clubs Members">
 </form>
-<form action = "join_cb.php" method = "get">
-    <input type = "submit" value = "Join Clubs">
-</form>
 <form action = "view_a.php" method = "get">
-    <input type = "submit" value = "View Advisors">
+    <input type = "submit" value = "View Your Advisor">
 </form>
 </body>
 

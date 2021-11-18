@@ -53,15 +53,20 @@ include("connection.php");
                         $search= $_POST['search'];
 
                         $sql = "SELECT * FROM  `courses` WHERE p_name LIKE '%$search%'";
-                        $query = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_array($query)){
-                            $number = $row['number'];
-                            $name = $row['name'];
-                            $p_name = $row['p_name'];
-        
-                            echo "<tr><td>" .$number. "</td><td>" .$name. "</td><td>"  .$p_name. "</td><td></td></tr>";
-                        }
-                   
+						$query = mysqli_query($conn, $sql);
+						
+						if (mysqli_fetch_array($query) == 0){
+							echo $search. " doesn't teach any classes";
+						}
+						else {
+							while ($row = mysqli_fetch_array($query)){
+								$number = $row['number'];
+								$name = $row['name'];
+								$p_name = $row['p_name'];
+			
+								echo "<tr><td>" .$number. "</td><td>" .$name. "</td><td>"  .$p_name. "</td><td></td></tr>";
+							}
+						}
 				?>
 			</tr>
 		</table>

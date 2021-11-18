@@ -17,11 +17,8 @@
 <form action = "view_As.php" method = "get">
     <input type = "submit" value = "View Students">
 </form>
-<form action = "views_cbM.php" method = "get">
+<form action = "views_cbMA.php" method = "get">
     <input type = "submit" value = "View Clubs Memebers">
-</form>
-<form action = "advisor_add.php" method = "get">
-    <input type = "submit" value = "Add Student">
 </form>
 </body>
 

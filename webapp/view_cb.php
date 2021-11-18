@@ -45,6 +45,9 @@ include("connection.php");
 			<input type = "text" placeholder = "Search Clubs Name or ID" name="search">
 			<input type = "submit" value="Search" name="submit">
 		</form>
+		<form action = "join_cb.php" method = "get">
+			<input type = "submit" value = "Join Clubs">
+		</form>
 		<table>
 			<tr>
 			<th>Club ID</th>

@@ -53,7 +53,7 @@ include("connection.php");
                 	
                         $search= $_POST['search'];
 
-                        $sql = "SELECT * FROM  `members` WHERE cb_name LIKE '%$search%' OR s_name = '&$search%'";
+                        $sql = "SELECT * FROM  `members` WHERE cb_name LIKE '%$search%' OR s_name LIKE '$search%'";
                         $query = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_array($query)){
                             $s_id = $row['s_id'];
@@ -61,7 +61,7 @@ include("connection.php");
                             $cb_name = $row['cb_name'];
                             $s_name = $row['s_name'];
 
-                            echo "<tr><td>" .$s_id. "</td><td>" .$cb_id. "</td><td>" .$cb_name. "</td><td>" .$s_name. "</td><td><a href = 'drop_cb.php?cb_id=$cb_id&sID=$s_id' >DROP</a></td></tr>";
+                            echo "<tr><td>" .$s_id. "</td><td>" .$cb_id. "</td><td>" .$cb_name. "</td><td>" .$s_name. "</td><td></td></tr>";
                         }
                    
 				?>

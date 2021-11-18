@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("connection.php");
 
 ?>
@@ -39,35 +39,31 @@ include("connection.php");
 	</head>
 	<body>
 		<h1>
-			Classes at UCM
+			Classes You Teach
 		</h1>
-		<form action = "search_classes.php" method = "POST">
+		<form action = "search_pc.php" method = "POST">
 			<input type = "text" placeholder = "Search Classes" name="search">
 			<input type = "submit" value="Search" name="submit">
 		</form>
-		<form action = "add_c.php" method = "get">
-			<input type = "submit" value = "Add Course">
-		</form>
-		<form action = "remove_c.php" method = "get">
-			<input type = "submit" value = "Remove Course">
-		</form>
+        <form action = "view_pteach.php" method = "get">
+            <input type = "submit" value = "Students You Teach">
+        </form>
 		<table>
 			<tr>
 			<th>Class Number</th>
-			<th>Name</th>
-            <th>Professor</th>
+			<th>Class Name</th>
 			
 			<tr>
 				<?php
-					$sel = "SELECT * FROM `courses`";
+					$id = $_SESSION['id'];
+					$sel = "SELECT c.number, c.name FROM courses c, professors p WHERE p.id='$id' AND p.name = p_name";
 					$qryDisplay = mysqli_query($conn, $sel);
 					while ($row = mysqli_fetch_array($qryDisplay)) {
                     
-						$c_number = $row['number'];
-						$name = $row['name'];
-						$pName = $row['p_name'];
+					$number = $row['number'];
+                    $name = $row['name'];
 
-						echo "<tr><td>" .$c_number. "</td><td>" .$name. "</td><td>"  .$pName. "</td><td></td></tr>";
+					echo "<tr><td>" .$number. "</td><td>" .$name. "</td><td></td></tr>";
 				}
 
 				?>

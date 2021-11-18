@@ -9,12 +9,15 @@
 
         if (!empty($number) && !empty($name)) {
 
-            $sql = "DELETE FROM `courses` WHERE number='.$number' and name='.$name'";
+            $sql = "DELETE FROM `courses` WHERE number='$number' and name='$name'";
 
             $qry = mysqli_query($conn, $sql);
         
             if ($qry) {
-                echo "Course has been added removed: " .$name. "<br>";
+				$sql1 = "DELETE FROM `takes` WHERE c_number='$number'";
+				$qry1 = mysqli_query($conn, $sql1);
+				echo "Course has been removed: " .$name. "<br>";
+				echo "Students has been removed from: " .$name. "<br>";
             }
         }
 
