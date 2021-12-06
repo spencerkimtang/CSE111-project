@@ -34,8 +34,8 @@ WHERE p.id='2017'
 
 -- when adding advisor to existing club by professor
 UPDATE clubs
-SET advisor='Mukesh'
-WHERE id='2017';
+SET advisor='Mukesh Singhal'
+WHERE id='3003';
 
 -- search all student in single class by admin
 SELECT * FROM  takes WHERE s_id = (SELECT id
